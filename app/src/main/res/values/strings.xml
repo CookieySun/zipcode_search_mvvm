@@ -1,7 +1,8 @@
 <resources>
     <string name="app_name">zipcode_search_mvvm</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="hyphen">-</string>
+    <string name="URL">http://zipcloud.ibsnet.co.jp/api/search?zipcode=</string>
+    <string name="error">Error</string>
 </resources>

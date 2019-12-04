@@ -12,6 +12,6 @@ class HttpUtil {
             .build()
 
         val response = client.newCall(request).execute()
-        return response.body()?.string()
+        return ""//response.body()?.string()
     }
 }

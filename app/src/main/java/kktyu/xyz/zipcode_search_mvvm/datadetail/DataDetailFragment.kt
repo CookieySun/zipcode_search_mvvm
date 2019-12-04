@@ -7,11 +7,9 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import com.eclipsesource.json.Json
 import kktyu.xyz.zipcode_search_mvvm.R
-import kktyu.xyz.zipcode_search_mvvm.data.Jusho
 import kktyu.xyz.zipcode_search_mvvm.databinding.FragmentDataDetailBinding
 import kktyu.xyz.zipcode_search_mvvm.util.HttpUtil
 import kotlinx.android.synthetic.main.fragment_data_detail.*
@@ -26,12 +24,7 @@ class DataDetailFragment : Fragment() {
     private lateinit var binding: FragmentDataDetailBinding
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        binding = DataBindingUtil.inflate(
-            inflater,
-            R.layout.fragment_data_detail,
-            container,
-            false
-        )
+        binding = FragmentDataDetailBinding.inflate(inflater, container, false)
 
         binding.firstHalfNumber.addTextChangedListener(object : TextWatcher {
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
@@ -76,7 +69,7 @@ class DataDetailFragment : Fragment() {
                             + address.get("address3").toString())
                         .replace("\"", "") + "%n"
                 }
-                binding.jusho = Jusho(resultText.format())
+                binding.viewModel?.address = resultText.format()
             } else {
                 resultView.text = getString(R.string.error)
                 Log.e("getAddress", "Json:$result/zipCode:$zipCode")

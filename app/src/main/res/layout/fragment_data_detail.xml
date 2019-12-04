@@ -3,8 +3,8 @@
 
     <data>
         <variable
-                name="jusho"
-                type="kktyu.xyz.zipcode_search_mvvm.data.Jusho"/>
+                name="viewModel"
+                type="kktyu.xyz.zipcode_search_mvvm.data.ViewModel" />
     </data>
 
     <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -73,7 +73,7 @@
                     android:layout_marginTop="64dp"
                     android:layout_marginEnd="8dp"
                     android:layout_marginRight="8dp"
-                    android:text="@{jusho.address}"
+                    android:text="@{viewModel.address}"
                     android:textAppearance="@style/TextAppearance.AppCompat.Large"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"

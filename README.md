@@ -4,7 +4,7 @@
 3. MVVMを使ったアーキテクチャ
 
 ### 出来たこと
-1. ~~okhttpを使ってAPI通信<br>~~  
+1. ~~okhttpを使ってAPI通信<br>~~
    Retrofitを使ってAPI通信  
     (zipcloud.ibsnet.co.jp)のAPIを使用
 2. APIの結果をCoroutineを使った非同期処理で描画

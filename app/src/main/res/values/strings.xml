@@ -4,5 +4,6 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="hyphen">-</string>
     <string name="URL">http://zipcloud.ibsnet.co.jp/api/search?zipcode=</string>
+    <string name="base_url">http://zipcloud.ibsnet.co.jp/api/search/</string>
     <string name="error">Error</string>
 </resources>

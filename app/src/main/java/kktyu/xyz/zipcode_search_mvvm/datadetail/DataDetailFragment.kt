@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import kktyu.xyz.zipcode_search_mvvm.DaggerMainComponent
 import kktyu.xyz.zipcode_search_mvvm.GetApiData
 import kktyu.xyz.zipcode_search_mvvm.R
 import kktyu.xyz.zipcode_search_mvvm.data.ViewModel
@@ -16,11 +17,26 @@ import kotlinx.android.synthetic.main.fragment_data_detail.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.withContext
+import javax.inject.Inject
 
 
 class DataDetailFragment : Fragment() {
 
+    @Inject
+    lateinit var viewModel: ViewModel
+    @Inject
+    lateinit var baseUrl: String
+    @Inject
+    lateinit var getApiData: GetApiData
+
     private lateinit var binding: FragmentDataDetailBinding
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+        DaggerMainComponent.builder().application(activity!!.applicationContext).build()
+            .inject(this)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -28,7 +44,7 @@ class DataDetailFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentDataDetailBinding.inflate(inflater, container, false)
-        binding.viewModel = ViewModel()
+        binding.viewModel = viewModel
         return binding.root
     }
 
@@ -84,9 +100,7 @@ class DataDetailFragment : Fragment() {
 
     private fun getAddress(zipCode: String) = runBlocking {
         withContext(Dispatchers.IO) {
-            return@withContext GetApiData(getString(R.string.base_url)).getAddressInfo(
-                zipCode
-            )
+            return@withContext getApiData.getAddressInfo(zipCode)
         }
     }
 }

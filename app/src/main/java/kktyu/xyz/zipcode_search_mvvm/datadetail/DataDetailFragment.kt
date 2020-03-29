@@ -13,12 +13,10 @@ import kktyu.xyz.zipcode_search_mvvm.GetApiData
 import kktyu.xyz.zipcode_search_mvvm.R
 import kktyu.xyz.zipcode_search_mvvm.data.ViewModel
 import kktyu.xyz.zipcode_search_mvvm.databinding.FragmentDataDetailBinding
-import kotlinx.android.synthetic.main.fragment_data_detail.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
-
 
 class DataDetailFragment : Fragment() {
 
@@ -57,7 +55,7 @@ class DataDetailFragment : Fragment() {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
 
             override fun afterTextChanged(p0: Editable?) {
-                if (firstHalfNumber.text.length == 3) secondHalfNumber.requestFocus()
+                if (binding.firstHalfNumber.text.length == 3) binding.secondHalfNumber.requestFocus()
                 fillText()
             }
         })
@@ -74,8 +72,9 @@ class DataDetailFragment : Fragment() {
     }
 
     private fun fillText() {
-        if (firstHalfNumber.text.length == 3 && secondHalfNumber.text.length == 4) {
-            val zipCode = firstHalfNumber.text.toString() + secondHalfNumber.text.toString()
+        if (binding.firstHalfNumber.text.length == 3 && binding.secondHalfNumber.text.length == 4) {
+            val zipCode =
+                binding.firstHalfNumber.text.toString() + binding.secondHalfNumber.text.toString()
             val response = getAddress(zipCode)
 
             val address: String =
